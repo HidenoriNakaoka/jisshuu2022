@@ -1,5 +1,6 @@
-//var dir = "/Volumes/MPFM201207/2022_10_25_12_5/Pos0_2_done/";// Change this line to match your working directory
-
+// Open image sequence of binarized images
+// Set slice 1 (The first slice)
+// Put a mouse corsor on a cell to be tracked, and press [l]
 macro "lineage_tracking [l]" {
 	// Forward tracking
 	Stack.getPosition(channel, slice, frame);
@@ -11,7 +12,6 @@ macro "lineage_tracking [l]" {
 	doWand(x, y);
 	roiManager("add");
 	getBoundingRect(u, v, width, height); // (u,v) = coordinate at left-top corner
-	//print(u,v);
 
 	while(slice < nSlices){
 		slice++;
@@ -33,6 +33,7 @@ macro "lineage_tracking [l]" {
 	print("Tracking Finished");
 }
 
+// This macro [m] assumes that ROI manager is open with identified set of ROIs (i.e. You have to run macro [l] first).
 macro "measure [m]"{
 	run("Set Measurements...", "area stack redirect=None decimal=3");
 	roiManager("Deselect");
@@ -44,6 +45,7 @@ macro "measure [m]"{
 	measure_fluorescence("RFP");
 }
 
+// This macro [p] assumes that you have executed macro [m] above, and the tracking data are visible on Result Table.
 macro "plot_cell_size_trajectory [p]"{
 	xarray = newArray(nResults);
 	yarray = newArray(nResults);// For cell area
@@ -90,8 +92,7 @@ function scan_cell(u, v, width, height){// The argument is a coordinate at left-
 }
 
 function measure_fluorescence(key){
-	dir = getInfo("image.directory");
-	//print(dir);
+	dir = getInfo("image.directory");// Get directory path where binary images are stored.
 	run("Image Sequence...", "open="+dir+" file="+key+" sort");
 	run("Subtract Background...", "rolling=50 stack");
 	for(i=0; i<roiManager("count"); i++){
