@@ -1,6 +1,6 @@
 // Open image sequence of binarized images
 // Set slice 1 (The first slice)
-// Put a mouse corsor on a cell to be tracked, and press [l]
+// Put a mouse cursor on a cell to be tracked, and press [l]
 macro "lineage_tracking [l]" {
 	// Forward tracking
 	Stack.getPosition(channel, slice, frame);
