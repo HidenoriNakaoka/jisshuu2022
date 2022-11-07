@@ -1,3 +1,6 @@
+// Use these set of macros after running Lineage Tracking macros.
+// Each macro assumes that an appropriate Result Table is active.
+
 macro "output_generation_time_list [g]"{
 	div_count = 0;// This is a variable to count total number of cell divisions.
 	tau = 0;
