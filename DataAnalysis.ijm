@@ -57,7 +57,7 @@ macro "autocorrelation [a]"{
 	//R_0 = R_0/N;
 	
 	print("\\Clear");
-	print("lag/slice+"\t"+"correlation");
+	print("lag/slice"+"\t"+"correlation");
 	j = 0;
 	for(j=0; j<N; j++){	
 		R_j = 0;
