@@ -14,7 +14,8 @@ macro "output_generation_time_list [g]"{
 }
 
 macro "output_cell_cycle_stats [c]"{
-	
+	print("\\Clear");
+	print("genTime/min"+"\t"+"birthSize/pxl"+"\t"+"finalSize/pxl"+"\t"+"meanGFP");
 	for(i=0; i<nResults; i++){
 		if(getResult("Division", i)==1){
 			// Get parameters at the beginning of the cell cycle
