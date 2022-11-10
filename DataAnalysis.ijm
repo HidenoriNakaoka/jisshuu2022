@@ -31,8 +31,7 @@ macro "output_cell_cycle_stats [c]"{
 			rfp_f = getResult("RFP",i);
 			tau = (s_f-s_i)*5;// Generation time calculation
 			mean_gfp = (gfp_i + gfp_f)/2;
-			mean_rfp = (rfp_i + rfp_f)/2;
-			print(tau+"\t"+a_i+"\t"+a_f+"\t"+mean_gfp+"\t"+mean_rfp);
+			print(tau+"\t"+a_i+"\t"+a_f+"\t"+mean_gfp);
 		}
 	}
 }
@@ -57,6 +56,8 @@ macro "autocorrelation [a]"{
 	}
 	//R_0 = R_0/N;
 	
+	print("\\Clear");
+	print("lag/slice+"\t"+"correlation");
 	j = 0;
 	for(j=0; j<N; j++){	
 		R_j = 0;
@@ -65,7 +66,7 @@ macro "autocorrelation [a]"{
 		}
 		//R_j = R_j/N;
 		
-		print(j*5/60+"\t"+R_j/R_0);
+		print(j+"\t"+R_j/R_0);
 	}
 }
 
